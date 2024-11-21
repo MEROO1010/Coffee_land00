@@ -17,7 +17,7 @@ void main() {
       routes: {
         '/': ((context) => Home()),
         '/login': (context) => LoginPage(),
-        '/signup': (context) => SignupPage(),
+        '/signup': (context) => signup(),
         '/cappuccino': (context) => cappuccino(),
         '/latte': (context) => latte(),
         '/Espresso': (context) => Espresso(),
@@ -60,7 +60,7 @@ class Home extends StatelessWidget {
                   context,
                   PageTransition(
                     type: PageTransitionType.leftToRight,
-                    child: LoginPage(),
+                    child: login(),
                     isIos: true,
                     duration: Duration(milliseconds: 400),
                   ),
@@ -94,7 +94,7 @@ class Home extends StatelessWidget {
                   context,
                   PageTransition(
                     type: PageTransitionType.leftToRight,
-                    child: SignupPage(),
+                    child: signup(),
                     isIos: true,
                     duration: Duration(milliseconds: 400),
                   ),
