@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class SignInPage extends StatelessWidget {
-  void signIn(String username, String password) async {
+class SignUpPage extends StatelessWidget {
+  void signUp(String name, String email, String password) async {
     final response = await http.post(
-      Uri.parse('http://localhost:3000/signin'),
+      Uri.parse('http://localhost:3000/signup'),
       headers: {'Content-Type': 'application/json'},
-      body: json.encode({'username': username, 'password': password}),
+      body: json.encode({'name': name, 'email': email, 'password': password}),
     );
 
     if (response.statusCode == 200) {
-      print('Sign-in successful!');
+      print('Sign-up successful!');
     } else {
-      print('Sign-in failed: ${response.body}');
+      print('Sign-up failed: ${response.body}');
     }
   }
 
@@ -27,13 +27,13 @@ class SignInPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Coffee bean logo (Placeholder)
-              Icon(Icons.coffee_rounded, size: 100, color: Colors.brown[300]),
+              // Coffee cup logo (Placeholder)
+              Icon(Icons.coffee_outlined, size: 100, color: Colors.brown[300]),
               SizedBox(height: 40),
 
-              // Sign-In text
+              // Sign-Up text
               Text(
-                'Sign-In',
+                'Sign-Up',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -42,13 +42,28 @@ class SignInPage extends StatelessWidget {
               ),
               SizedBox(height: 20),
 
-              // Username input
+              // Name input
               TextField(
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Color(0xFFFFD8A9),
-                  hintText: 'Username',
+                  hintText: 'Name',
                   prefixIcon: Icon(Icons.person, color: Colors.grey),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+
+              // Email input
+              TextField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Color(0xFFFFD8A9),
+                  hintText: 'Email',
+                  prefixIcon: Icon(Icons.email, color: Colors.grey),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                     borderSide: BorderSide.none,
@@ -73,16 +88,10 @@ class SignInPage extends StatelessWidget {
               ),
               SizedBox(height: 30),
 
-              // Sign-In button
+              // Sign-Up button
               ElevatedButton(
                 onPressed: () {
-                  {
-                    signIn(
-                      'testuser',
-                      'password123',
-                    ); // Replace with input values
-                  }
-                  ;
+                  // Handle sign-up logic
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF8B5E4A),
@@ -92,26 +101,26 @@ class SignInPage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 100, vertical: 18),
                 ),
                 child: Text(
-                  'Sign-In',
+                  'Sign-Up',
                   style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
               SizedBox(height: 20),
 
-              // Sign-up option
+              // Sign-in option
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Don’t have an account?",
+                    "Already have an account?",
                     style: TextStyle(color: Colors.grey),
                   ),
                   TextButton(
                     onPressed: () {
-                      // Navigate to sign-up page
+                      // Navigate to sign-in page
                     },
                     child: Text(
-                      'Sign-up',
+                      'Sign-In',
                       style: TextStyle(color: Color(0xFF8B5E4A)),
                     ),
                   ),

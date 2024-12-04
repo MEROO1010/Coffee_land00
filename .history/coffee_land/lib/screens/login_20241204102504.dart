@@ -76,13 +76,9 @@ class SignInPage extends StatelessWidget {
               // Sign-In button
               ElevatedButton(
                 onPressed: () {
-                  {
-                    signIn(
-                      'testuser',
-                      'password123',
-                    ); // Replace with input values
-                  }
-                  ;
+                 {
+    signIn('testuser', 'password123'); // Replace with input values
+  },
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF8B5E4A),

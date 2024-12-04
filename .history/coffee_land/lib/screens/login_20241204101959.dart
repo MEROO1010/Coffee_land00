@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(debugShowCheckedModeBanner: false, home: SignInPage());
+  }
+}
 
 class SignInPage extends StatelessWidget {
-  void signIn(String username, String password) async {
-    final response = await http.post(
-      Uri.parse('http://localhost:3000/signin'),
-      headers: {'Content-Type': 'application/json'},
-      body: json.encode({'username': username, 'password': password}),
-    );
-
-    if (response.statusCode == 200) {
-      print('Sign-in successful!');
-    } else {
-      print('Sign-in failed: ${response.body}');
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,13 +71,7 @@ class SignInPage extends StatelessWidget {
               // Sign-In button
               ElevatedButton(
                 onPressed: () {
-                  {
-                    signIn(
-                      'testuser',
-                      'password123',
-                    ); // Replace with input values
-                  }
-                  ;
+                  // Handle sign-in logic
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF8B5E4A),
