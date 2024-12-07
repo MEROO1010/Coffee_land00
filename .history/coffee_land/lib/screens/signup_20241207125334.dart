@@ -4,41 +4,17 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class SignUpPage extends StatelessWidget {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  void signUp(String name, String email, String password) async {
+    final response = await http.post(
+      Uri.parse('http://localhost:3000/signup'),
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode({'name': name, 'email': email, 'password': password}),
+    );
 
-  void signUp(
-    BuildContext context,
-    String name,
-    String email,
-    String password,
-  ) async {
-    try {
-      final response = await http.post(
-        Uri.parse('http://localhost:3000/api/register'), // Adjust API endpoint
-        headers: {'Content-Type': 'application/json'},
-        body: json.encode({'name': name, 'email': email, 'password': password}),
-      );
-
-      if (response.statusCode == 201) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Sign-up successful!')));
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => SignInScreen()),
-        );
-      } else {
-        final error = jsonDecode(response.body)['message'] ?? 'Sign-up failed!';
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(error)));
-      }
-    } catch (error) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Failed to connect to server!')));
+    if (response.statusCode == 200) {
+      print('Sign-up successful!');
+    } else {
+      print('Sign-up failed: ${response.body}');
     }
   }
 
@@ -68,7 +44,6 @@ class SignUpPage extends StatelessWidget {
 
               // Name input
               TextField(
-                controller: nameController,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Color(0xFFFFD8A9),
@@ -84,7 +59,6 @@ class SignUpPage extends StatelessWidget {
 
               // Email input
               TextField(
-                controller: emailController,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Color(0xFFFFD8A9),
@@ -100,7 +74,6 @@ class SignUpPage extends StatelessWidget {
 
               // Password input
               TextField(
-                controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   filled: true,
@@ -118,17 +91,14 @@ class SignUpPage extends StatelessWidget {
               // Sign-Up button
               ElevatedButton(
                 onPressed: () {
-                  final String name = nameController.text.trim();
-                  final String email = emailController.text.trim();
-                  final String password = passwordController.text.trim();
-
-                  if (name.isEmpty || email.isEmpty || password.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('All fields are required!')),
-                    );
-                  } else {
-                    signUp(context, name, email, password);
+                  {
+                    signUp(
+                      'John Doe',
+                      'john@example.com',
+                      'password123',
+                    ); // Replace with input values
                   }
+                  ;
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF8B5E4A),

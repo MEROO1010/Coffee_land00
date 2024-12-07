@@ -1,42 +1,23 @@
-import 'package:coffee_land/screens/signup.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(debugShowCheckedModeBanner: false, home: SignInScreen());
+  }
+}
 
 class SignInScreen extends StatelessWidget {
-  final TextEditingController usernameController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-
-  void signIn(BuildContext context, String username, String password) async {
-    try {
-      final response = await http.post(
-        Uri.parse('http://localhost:3000/api/login'), // Adjust API endpoint
-        headers: {'Content-Type': 'application/json'},
-        body: json.encode({'username': username, 'password': password}),
-      );
-
-      if (response.statusCode == 200) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Login successful!')));
-        // Navigate to another screen (e.g., Dashboard)
-      } else {
-        final error = jsonDecode(response.body)['message'] ?? 'Login failed!';
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text(error)));
-      }
-    } catch (error) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Failed to connect to server!')));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF5EDE0), // Background color
+      backgroundColor: Color(
+        0xFFF5EDE0,
+      ), // Background color similar to the design
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -61,7 +42,6 @@ class SignInScreen extends StatelessWidget {
               SizedBox(height: 40),
               // Username Input
               TextField(
-                controller: usernameController,
                 decoration: InputDecoration(
                   prefixIcon: Image.asset(
                     'assets/images/user_icon.png',
@@ -79,7 +59,6 @@ class SignInScreen extends StatelessWidget {
               SizedBox(height: 20),
               // Password Input
               TextField(
-                controller: passwordController,
                 obscureText: true,
                 decoration: InputDecoration(
                   prefixIcon: Image.asset(
@@ -99,16 +78,7 @@ class SignInScreen extends StatelessWidget {
               // Sign-In Button
               ElevatedButton(
                 onPressed: () {
-                  final String username = usernameController.text.trim();
-                  final String password = passwordController.text.trim();
-
-                  if (username.isEmpty || password.isEmpty) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('All fields are required!')),
-                    );
-                  } else {
-                    signIn(context, username, password);
-                  }
+                  // Handle Sign-In logic
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF8B5E3C), // Button color
@@ -137,10 +107,7 @@ class SignInScreen extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => SignUpPage()),
-                      );
+                      // Navigate to the Sign-Up screen
                     },
                     child: Text(
                       "Sign-up",
