@@ -80,17 +80,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             imagePath: 'assets/images/onborading1.png',
             fit: BoxFit.cover,
           ),
-          OnboardingPage(
-            imagePath: 'assets/images/onborading2.png',
-            fit: BoxFit.cover,
-          ),
-          OnboardingPage(
-            imagePath: 'assets/images/onborading3.png',
-            fit: BoxFit.cover,
-          ),
+          OnboardingPage(imagePath: 'assets/images/onborading2.png'),
+          OnboardingPage(imagePath: 'assets/images/onborading3.png'),
           OnboardingPage(
             imagePath: 'assets/images/onborading4.png',
-            fit: BoxFit.cover,
 
             isLastPage: true,
             onLastPageTap: () {

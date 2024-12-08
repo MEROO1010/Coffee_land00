@@ -48,11 +48,12 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Stack(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
               'assets/images/splash screen.png', // Ensure the image is added to your assets folder
-
+              height: 200,
               fit: BoxFit.cover, // Adjust the height
             ),
           ],
@@ -76,21 +77,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: PageView(
         controller: _pageController,
         children: [
-          OnboardingPage(
-            imagePath: 'assets/images/onborading1.png',
-            fit: BoxFit.cover,
-          ),
-          OnboardingPage(
-            imagePath: 'assets/images/onborading2.png',
-            fit: BoxFit.cover,
-          ),
-          OnboardingPage(
-            imagePath: 'assets/images/onborading3.png',
-            fit: BoxFit.cover,
-          ),
+          OnboardingPage(imagePath: 'assets/images/onborading1.png'),
+          OnboardingPage(imagePath: 'assets/images/onborading2.png'),
+          OnboardingPage(imagePath: 'assets/images/onborading3.png'),
           OnboardingPage(
             imagePath: 'assets/images/onborading4.png',
-            fit: BoxFit.cover,
 
             isLastPage: true,
             onLastPageTap: () {
@@ -117,7 +108,6 @@ class OnboardingPage extends StatelessWidget {
 
     this.isLastPage = false,
     this.onLastPageTap,
-    required BoxFit fit,
   });
 
   @override

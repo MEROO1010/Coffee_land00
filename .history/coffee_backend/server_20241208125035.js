@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const cors = require('cors');
+const cors = require('cors'); // Import cors module
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -12,24 +12,6 @@ app.use(bodyParser.json());
 // Serve static files
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-
-// Mock data
-const items = [
-  { id: 1, name: "Cappuccino 1", price: 15.0, image: "/assets/cappuccino1.png" },
-  { id: 2, name: "Cappuccino 2", price: 20.0, image: "/assets/cappuccino2.png" },
-  { id: 3, name: "Latte 1", price: 8.0, image: "/assets/latte1.png" },
-  { id: 4, name: "Latte 2", price: 12.0, image: "/assets/latte2.png" },
-  { id: 5, name: "Mocha", price: 10.0, image: "/assets/mocha.png" },
-  { id: 6, name: "Espresso", price: 7.0, image: "/assets/espresso.png" },
-];
-
-// Serve assets (optional)
-app.use('/assets', express.static('assets'));
-
-// API endpoint to get items
-app.get('/api/items', (req, res) => {
-  res.json(items);
-});
 // Mock users for login
 const mockUsers = [
   { username: 'user1', password: 'password123' },

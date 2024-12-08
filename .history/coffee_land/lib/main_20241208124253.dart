@@ -76,21 +76,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: PageView(
         controller: _pageController,
         children: [
-          OnboardingPage(
-            imagePath: 'assets/images/onborading1.png',
-            fit: BoxFit.cover,
-          ),
-          OnboardingPage(
-            imagePath: 'assets/images/onborading2.png',
-            fit: BoxFit.cover,
-          ),
-          OnboardingPage(
-            imagePath: 'assets/images/onborading3.png',
-            fit: BoxFit.cover,
-          ),
+          OnboardingPage(imagePath: 'assets/images/onborading1.png'),
+          OnboardingPage(imagePath: 'assets/images/onborading2.png'),
+          OnboardingPage(imagePath: 'assets/images/onborading3.png'),
           OnboardingPage(
             imagePath: 'assets/images/onborading4.png',
-            fit: BoxFit.cover,
 
             isLastPage: true,
             onLastPageTap: () {
@@ -117,7 +107,6 @@ class OnboardingPage extends StatelessWidget {
 
     this.isLastPage = false,
     this.onLastPageTap,
-    required BoxFit fit,
   });
 
   @override

@@ -1,4 +1,3 @@
-import 'package:coffee_land/screens/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -122,10 +121,6 @@ class SignUpPage extends StatelessWidget {
                   final String name = nameController.text.trim();
                   final String email = emailController.text.trim();
                   final String password = passwordController.text.trim();
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomeScreen()),
-                  );
 
                   if (name.isEmpty || email.isEmpty || password.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
